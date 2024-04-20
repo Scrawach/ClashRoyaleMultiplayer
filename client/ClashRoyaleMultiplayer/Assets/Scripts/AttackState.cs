@@ -1,7 +1,10 @@
-﻿public class AttackState : IUpdatableState
+﻿using UnityEngine;
+
+public class AttackState : IUpdatableState
 {
     public void Enter()
     {
+        Debug.Log($"ATTACK STATE");
     }
 
     public void Exit()

@@ -24,6 +24,6 @@ public class MoveUnitToNearestEnemyTowerState : IUpdatableState
 
     public void Exit()
     {
-        
+        _movement.Stop();
     }
 }

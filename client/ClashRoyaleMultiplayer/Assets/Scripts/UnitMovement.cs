@@ -12,7 +12,10 @@ public class UnitMovement : MonoBehaviour
 
     private void Update()
     {
-        var distanceToPosition = Vector3.Distance(transform.position, _agent.nextPosition);
+        var distanceToPosition = Vector3.Distance(transform.position, _agent.destination);
         IsPositionReached = distanceToPosition < _agent.stoppingDistance;
     }
+
+    public void Stop() => 
+        _agent.isStopped = true;
 }
