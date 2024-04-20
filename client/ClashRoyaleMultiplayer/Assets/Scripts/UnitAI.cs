@@ -11,9 +11,9 @@ public class UnitAI : MonoBehaviour
     {
         _stateMachine = new StateMachine();
         _stateMachine
-            .AddState(new MoveUnitToNearestEnemyTowerState(_stateMachine, _movement))
+            .AddState(new MoveToEnemyTowerState(_stateMachine, _movement))
             .AddState(new AttackState());
-        _stateMachine.Enter<MoveUnitToNearestEnemyTowerState>();
+        _stateMachine.Enter<MoveToEnemyTowerState>();
     }
 
     private void Update() => 
