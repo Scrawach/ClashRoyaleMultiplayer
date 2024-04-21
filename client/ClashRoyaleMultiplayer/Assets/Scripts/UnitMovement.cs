@@ -7,6 +7,9 @@ public class UnitMovement : MonoBehaviour
     
     public bool IsPositionReached { get; private set; }
 
+    public void SetSpeed(float value) => 
+        _agent.speed = value;
+
     public void MoveTo(Vector3 position) => 
         _agent.SetDestination(position);
 

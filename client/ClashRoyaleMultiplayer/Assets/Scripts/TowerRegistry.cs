@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TowerRegistry
 {
     private readonly List<Tower> _towers;
 
-    public TowerRegistry() => 
-        _towers = new List<Tower>();
+    public TowerRegistry(IEnumerable<Tower> towers) => 
+        _towers = towers.ToList();
 
     public void Add(Tower tower) => 
         _towers.Add(tower);
