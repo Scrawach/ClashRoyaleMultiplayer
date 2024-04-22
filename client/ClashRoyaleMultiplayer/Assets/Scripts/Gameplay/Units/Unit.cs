@@ -78,8 +78,7 @@ namespace Gameplay.Units
         private IEnumerator Attacking(Action onCompleted)
         {
             yield return new WaitForSeconds(1);
-            Destroy(_nearestEnemy.gameObject);
-            _enemyUnits.Remove(_nearestEnemy);
+            _nearestEnemy.TakeDamage(1);
             onCompleted?.Invoke();
             Debug.Log($"Done Attack");
         }

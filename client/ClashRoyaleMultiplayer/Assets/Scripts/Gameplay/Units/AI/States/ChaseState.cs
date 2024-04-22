@@ -31,9 +31,12 @@ namespace Gameplay.Units.AI.States
                 _stateMachine.Enter<AttackState>();
                 return;
             }
-            
+
             if (_unit.HasChaseTarget())
+            {
+                _unit.ChaseToTarget();
                 return;
+            }
             
             _stateMachine.Enter<MoveToTowerState>();
         }

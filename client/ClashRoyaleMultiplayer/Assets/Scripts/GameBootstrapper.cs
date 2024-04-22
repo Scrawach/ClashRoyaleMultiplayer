@@ -25,18 +25,20 @@ public class GameBootstrapper : MonoBehaviour
         var playerUnits = new UnitRegistry(_playerUnits);
 
         foreach (var enemyUnit in _enemyUnits)
-            Initialize(enemyUnit, playerTowers, playerUnits);
+            Initialize(enemyUnit, playerTowers, playerUnits, enemyUnits);
 
         foreach (var playerUnit in _playerUnits) 
-            Initialize(playerUnit, enemyTowers, enemyUnits);
+            Initialize(playerUnit, enemyTowers, enemyUnits, playerUnits);
     }
 
-    private void Initialize(Unit target, TowerRegistry targetTowers, UnitRegistry targetUnits)
+    private void Initialize(Unit target, TowerRegistry targetTowers, UnitRegistry targetUnits, UnitRegistry selfUnits)
     {
         target.Construct(targetTowers, targetUnits);
         target.GetComponent<UnitMovement>().SetSpeed(_stats.Speed);
         target.GetComponent<UnitAttack>().Construct(_stats.ModelSize, _stats.AttackRange);
         target.GetComponent<Health>().Construct(_stats.Health);
+        target.GetComponent<DestroyAfterDeath>().Construct(selfUnits);
+
         target.GetComponent<NavMeshAgent>().stoppingDistance = _stats.ModelSize + _stats.AttackRange.Min;
 
         var stateMachine = new UnitStateMachine(target);

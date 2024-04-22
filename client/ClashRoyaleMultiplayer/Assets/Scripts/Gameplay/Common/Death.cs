@@ -15,7 +15,10 @@ namespace Gameplay.Common
         private void OnDisable() => 
             _health.Changed -= OnHealthChanged;
 
-        private void OnHealthChanged() => 
-            Happened?.Invoke();
+        private void OnHealthChanged()
+        {
+            if (_health.Ratio <= 0)
+                Happened?.Invoke();
+        }
     }
 }
