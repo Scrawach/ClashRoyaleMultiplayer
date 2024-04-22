@@ -594,6 +594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1093716881}
   - component: {fileID: 1093716884}
+  - component: {fileID: 1093716886}
   - component: {fileID: 1093716883}
   - component: {fileID: 1093716885}
   - component: {fileID: 1093716882}
@@ -669,11 +670,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movement: {fileID: 1093716883}
   _attack: {fileID: 1093716885}
+  _agent: {fileID: 1093716882}
+  _unit: {fileID: 1093716886}
   _stats:
     Speed: 5
+    ModelSize: 0
     AttackRange:
       Min: 0.2
       Max: 0.3
+    ChaseDistance:
+      Min: 0
+      Max: 0
   _enemyTowers:
   - {fileID: 1371114837}
   - {fileID: 1264583162}
@@ -690,6 +697,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796aed55527f48e99078367634516ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1093716886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093716880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef0bc74d7b74f7fa9723e88d075ae6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movement: {fileID: 1093716883}
+  _attack: {fileID: 1093716885}
 --- !u!1 &1264583161
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,7 +981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3353f7c4cc47b58a1b185ce513e2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _modelSize: 2
+  _modelSize: 5
 --- !u!65 &2137918311
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using Gameplay.Towers;
+using Gameplay.Units;
+using Gameplay.Units.AI;
+using Gameplay.Units.AI.States;
 
 public class MoveToEnemyTowerState : IUpdatableState
 {
@@ -19,7 +23,7 @@ public class MoveToEnemyTowerState : IUpdatableState
 
     public void Enter()
     {
-        _towers.TryGetNearestTower(_movement.transform.position, out _nearestTower);
+        _towers.TryGetNearest(_movement.transform.position, out _nearestTower);
         _movement.MoveTo(_nearestTower.transform.position);
     }
 
