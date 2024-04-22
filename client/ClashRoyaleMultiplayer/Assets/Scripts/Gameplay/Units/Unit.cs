@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Gameplay.Common;
 using Gameplay.Towers;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Gameplay.Units
     {
         [SerializeField] private UnitMovement _movement;
         [SerializeField] private UnitAttack _attack;
+        [SerializeField] private Health _health;
         [SerializeField] private float _aggroRadius;
 
         private Tower _nearestTower;
@@ -70,9 +72,14 @@ namespace Gameplay.Units
             
         }
 
+        public void TakeDamage(int damage) => 
+            _health.TakeDamage(damage);
+
         private IEnumerator Attacking(Action onCompleted)
         {
             yield return new WaitForSeconds(1);
+            Destroy(_nearestEnemy.gameObject);
+            _enemyUnits.Remove(_nearestEnemy);
             onCompleted?.Invoke();
             Debug.Log($"Done Attack");
         }
