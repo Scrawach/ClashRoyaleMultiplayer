@@ -1,4 +1,6 @@
-﻿namespace Gameplay.Units.AI.States
+﻿using UnityEngine;
+
+namespace Gameplay.Units.AI.States
 {
     public class AttackState : IState
     {
@@ -13,7 +15,7 @@
 
         public void Enter()
         {
-            if (_unit.HasChaseTarget())
+            if (_unit.HasAttackTarget())
                 _unit.AttackTarget(OnAttackCompleted);
             else
                 _stateMachine.Enter<MoveToTowerState>();
@@ -22,6 +24,7 @@
         private void OnAttackCompleted() => 
             Enter();
 
-        public void Exit() { }
+        public void Exit() => 
+            _unit.StopAttack();
     }
 }

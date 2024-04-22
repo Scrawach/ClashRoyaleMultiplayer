@@ -1,4 +1,6 @@
-﻿namespace Gameplay.Units.AI.States
+﻿using UnityEngine;
+
+namespace Gameplay.Units.AI.States
 {
     public class ChaseState : IUpdatableState
     {
@@ -17,12 +19,23 @@
                 _unit.ChaseToTarget();
         }
 
-        public void Exit() { }
+        public void Exit()
+        {
+            _unit.StopMove();
+        }
 
         public void Update(float deltaTime)
         {
-            if (!_unit.HasChaseTarget())
-                _stateMachine.Enter<MoveToTowerState>();
+            if (_unit.HasAttackTarget())
+            {
+                _stateMachine.Enter<AttackState>();
+                return;
+            }
+            
+            if (_unit.HasChaseTarget())
+                return;
+            
+            _stateMachine.Enter<MoveToTowerState>();
         }
     }
 }

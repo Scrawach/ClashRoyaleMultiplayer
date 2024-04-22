@@ -14,13 +14,14 @@ namespace Gameplay.Units.AI
         [SerializeField] private Unit _unit;
         [SerializeField] private UnitStats _stats;
         [SerializeField] private List<Tower> _enemyTowers;
+        [SerializeField] private List<Unit> _enemyUnits;
 
         private IStateMachine _stateMachine;
     
         private void Awake()
         {
             var towers = new TowerRegistry(_enemyTowers);
-            var units = new UnitRegistry(new Unit[] { null });
+            var units = new UnitRegistry(_enemyUnits);
         
             _unit.Construct(towers, units);
         

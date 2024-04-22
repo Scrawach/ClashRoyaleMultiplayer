@@ -12,8 +12,11 @@ namespace Gameplay.Units
         public void SetSpeed(float value) => 
             _agent.speed = value;
 
-        public void MoveTo(Vector3 position) => 
+        public void MoveTo(Vector3 position)
+        {
+            _agent.isStopped = false;
             _agent.SetDestination(position);
+        }
 
         private void Update()
         {

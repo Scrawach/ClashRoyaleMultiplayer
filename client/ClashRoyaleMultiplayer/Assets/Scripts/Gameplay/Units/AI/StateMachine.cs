@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Gameplay.Units.AI.States;
+using UnityEngine;
 
 namespace Gameplay.Units.AI
 {
@@ -28,6 +29,7 @@ namespace Gameplay.Units.AI
         {
             _current?.Exit();
             _current = _states[typeof(TState)];
+            Debug.Log($"Enter to {typeof(TState)}");
             _current.Enter();
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace Gameplay.Units.AI.States
+﻿using UnityEngine;
+
+namespace Gameplay.Units.AI.States
 {
     public class MoveToTowerState : IUpdatableState
     {

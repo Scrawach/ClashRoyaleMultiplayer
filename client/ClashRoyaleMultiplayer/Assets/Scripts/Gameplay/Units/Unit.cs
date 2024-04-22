@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Gameplay.Towers;
 using UnityEngine;
 
@@ -8,8 +9,10 @@ namespace Gameplay.Units
     {
         [SerializeField] private UnitMovement _movement;
         [SerializeField] private UnitAttack _attack;
+        [SerializeField] private float _aggroRadius;
 
         private Tower _nearestTower;
+        private Unit _nearestEnemy;
 
         private TowerRegistry _enemyTowers;
         private UnitRegistry _enemyUnits;
@@ -26,12 +29,16 @@ namespace Gameplay.Units
         public void MoveToNearestTower() => 
             _movement.MoveTo(_nearestTower.transform.position);
 
-        public void StopMove() => 
+        public void StopMove()
+        {
+            Debug.Log($"STOP MOVE");
             _movement.Stop();
+        }
 
         public bool HasChaseTarget()
         {
-            return false;
+            var hasEnemy = _enemyUnits.TryGetNearest(transform.position, out _nearestEnemy, out var distance);
+            return hasEnemy && distance < _aggroRadius;
         }
 
         public bool CanAttackTower() => 
@@ -39,17 +46,41 @@ namespace Gameplay.Units
 
         public void ChaseToTarget()
         {
-        
+            Debug.Log($"CHASE");
+            _movement.MoveTo(_nearestEnemy.transform.position);
         }
 
         public bool HasAttackTarget()
         {
-            return false;
+            if (_nearestEnemy == null)
+                return false;
+
+            var inAttackRange = _attack.InAttackRange(_nearestEnemy);
+            return inAttackRange;
         }
 
         public void AttackTarget(Action onAttackCompleted = null)
         {
-            throw new System.NotImplementedException();
+            Debug.Log($"ATTACK TARGET!");
+            StartCoroutine(Attacking(onAttackCompleted));
+        }
+
+        public void StopAttack()
+        {
+            
+        }
+
+        private IEnumerator Attacking(Action onCompleted)
+        {
+            yield return new WaitForSeconds(1);
+            onCompleted?.Invoke();
+            Debug.Log($"Done Attack");
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _aggroRadius);
         }
     }
 }

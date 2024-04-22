@@ -21,5 +21,12 @@ namespace Gameplay.Units
             var distance = target.GetDistance(unitPosition) - _modelSize;
             return distance > _attackRange.Min && distance < _attackRange.Max;
         }
+
+        public bool InAttackRange(Unit target)
+        {
+            var unitPosition = transform.position;
+            var distance = Vector3.Distance(unitPosition, target.transform.position) - _modelSize - _modelSize;
+            return distance > _attackRange.Min && distance < _attackRange.Max;
+        }
     }
 }
