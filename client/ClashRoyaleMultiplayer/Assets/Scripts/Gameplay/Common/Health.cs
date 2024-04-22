@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gameplay.Common
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, IDamageable
     {
         [SerializeField] private int _current;
         [SerializeField] private int _total;

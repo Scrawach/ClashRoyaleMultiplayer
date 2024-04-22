@@ -7,6 +7,7 @@ namespace Gameplay.Units
     public class UnitStats
     {
         public int Health;
+        public int AttackDamage;
         public float Speed;
         public float ModelSize;
         public Range AttackRange;

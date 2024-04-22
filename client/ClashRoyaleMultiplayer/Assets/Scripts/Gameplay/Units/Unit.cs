@@ -1,23 +1,23 @@
 ﻿using System;
-using System.Collections;
 using Gameplay.Common;
 using Gameplay.Towers;
 using UnityEngine;
 
 namespace Gameplay.Units
 {
-    public class Unit : MonoBehaviour
+    public class Unit : MonoBehaviour, IDamageable
     {
         [SerializeField] private UnitMovement _movement;
         [SerializeField] private UnitAttack _attack;
         [SerializeField] private Health _health;
         [SerializeField] private float _aggroRadius;
 
-        private Tower _nearestTower;
-        private Unit _nearestEnemy;
-
         private TowerRegistry _enemyTowers;
         private UnitRegistry _enemyUnits;
+
+        private Tower _nearestTower;
+        private Unit _nearestEnemy;
+        private IDamageable _currentTarget;
 
         public void Construct(TowerRegistry enemyTowers, UnitRegistry enemyUnits)
         {
@@ -31,11 +31,8 @@ namespace Gameplay.Units
         public void MoveToNearestTower() => 
             _movement.MoveTo(_nearestTower.transform.position);
 
-        public void StopMove()
-        {
-            Debug.Log($"STOP MOVE");
+        public void StopMove() => 
             _movement.Stop();
-        }
 
         public bool HasChaseTarget()
         {
@@ -46,47 +43,39 @@ namespace Gameplay.Units
         public bool CanAttackTower() => 
             _nearestTower != null && _attack.InAttackRange(_nearestTower);
 
-        public void ChaseToTarget()
-        {
-            Debug.Log($"CHASE");
+        public void ChaseToTarget() => 
             _movement.MoveTo(_nearestEnemy.transform.position);
-        }
 
         public bool HasAttackTarget()
         {
-            if (_nearestEnemy == null)
-                return false;
+            if (_nearestTower != null && _attack.InAttackRange(_nearestTower))
+            {
+                _currentTarget = _nearestTower;
+                return true;
+            }
 
-            var inAttackRange = _attack.InAttackRange(_nearestEnemy);
-            return inAttackRange;
+            if (_nearestEnemy != null && _attack.InAttackRange(_nearestEnemy))
+            {
+                _currentTarget = _nearestEnemy;
+                return true;
+            }
+
+            return false;
         }
 
-        public void AttackTarget(Action onAttackCompleted = null)
-        {
-            Debug.Log($"ATTACK TARGET!");
-            StartCoroutine(Attacking(onAttackCompleted));
-        }
+        public void AttackTarget(Action onAttackCompleted = null) => 
+            _attack.Attack(_currentTarget, onAttackCompleted);
 
-        public void StopAttack()
-        {
-            
-        }
-
-        public void TakeDamage(int damage) => 
-            _health.TakeDamage(damage);
-
-        private IEnumerator Attacking(Action onCompleted)
-        {
-            yield return new WaitForSeconds(1);
-            _nearestEnemy.TakeDamage(1);
-            onCompleted?.Invoke();
-            Debug.Log($"Done Attack");
-        }
+        public void StopAttack() => 
+            _attack.StopAttack();
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _aggroRadius);
         }
+
+        public void TakeDamage(int damage) => 
+            _health.TakeDamage(damage);
     }
 }

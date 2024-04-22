@@ -36,7 +36,7 @@ public class GameBootstrapper : MonoBehaviour
     {
         target.Construct(targetTowers, targetUnits);
         target.GetComponent<UnitMovement>().SetSpeed(stats.Speed);
-        target.GetComponent<UnitAttack>().Construct(stats.ModelSize, stats.AttackRange);
+        target.GetComponent<UnitAttack>().Construct(stats.ModelSize, stats.AttackDamage, stats.AttackRange);
         target.GetComponent<Health>().Construct(stats.Health);
         target.GetComponent<DestroyAfterDeath>().Construct(selfUnits);
 

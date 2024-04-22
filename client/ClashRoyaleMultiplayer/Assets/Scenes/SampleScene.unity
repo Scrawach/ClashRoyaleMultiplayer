@@ -1140,6 +1140,7 @@ MonoBehaviour:
   - {fileID: 1054550811}
   _playerStats:
     Health: 10
+    AttackDamage: 1
     Speed: 5
     ModelSize: 0.5
     AttackRange:
@@ -1150,6 +1151,7 @@ MonoBehaviour:
       Max: 8
   _enemyStats:
     Health: 5
+    AttackDamage: 1
     Speed: 5
     ModelSize: 0.5
     AttackRange:
