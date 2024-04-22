@@ -14,7 +14,8 @@ public class GameBootstrapper : MonoBehaviour
     [SerializeField] private List<Tower> _playerTowers;
     [SerializeField] private List<Unit> _playerUnits;
 
-    [SerializeField] private UnitStats _stats;
+    [SerializeField] private UnitStats _playerStats;
+    [SerializeField] private UnitStats _enemyStats;
     
     private void Awake()
     {
@@ -25,21 +26,21 @@ public class GameBootstrapper : MonoBehaviour
         var playerUnits = new UnitRegistry(_playerUnits);
 
         foreach (var enemyUnit in _enemyUnits)
-            Initialize(enemyUnit, playerTowers, playerUnits, enemyUnits);
+            Initialize(enemyUnit, _enemyStats, playerTowers, playerUnits, enemyUnits);
 
         foreach (var playerUnit in _playerUnits) 
-            Initialize(playerUnit, enemyTowers, enemyUnits, playerUnits);
+            Initialize(playerUnit, _playerStats, enemyTowers, enemyUnits, playerUnits);
     }
 
-    private void Initialize(Unit target, TowerRegistry targetTowers, UnitRegistry targetUnits, UnitRegistry selfUnits)
+    private void Initialize(Unit target, UnitStats stats, TowerRegistry targetTowers, UnitRegistry targetUnits, UnitRegistry selfUnits)
     {
         target.Construct(targetTowers, targetUnits);
-        target.GetComponent<UnitMovement>().SetSpeed(_stats.Speed);
-        target.GetComponent<UnitAttack>().Construct(_stats.ModelSize, _stats.AttackRange);
-        target.GetComponent<Health>().Construct(_stats.Health);
+        target.GetComponent<UnitMovement>().SetSpeed(stats.Speed);
+        target.GetComponent<UnitAttack>().Construct(stats.ModelSize, stats.AttackRange);
+        target.GetComponent<Health>().Construct(stats.Health);
         target.GetComponent<DestroyAfterDeath>().Construct(selfUnits);
 
-        target.GetComponent<NavMeshAgent>().stoppingDistance = _stats.ModelSize + _stats.AttackRange.Min;
+        target.GetComponent<NavMeshAgent>().stoppingDistance = stats.ModelSize + stats.AttackRange.Min;
 
         var stateMachine = new UnitStateMachine(target);
         target.GetComponent<UnitAI>().Construct(stateMachine);
