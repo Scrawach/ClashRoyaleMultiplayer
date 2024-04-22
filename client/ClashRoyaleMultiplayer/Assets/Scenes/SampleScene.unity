@@ -277,6 +277,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1746110082}
     m_Modifications:
+    - target: {fileID: 674706518582575284, guid: 18f064cf77cfb4543b3dc8357489ef79, type: 3}
+      propertyPath: _health
+      value: 
+      objectReference: {fileID: 503390588}
     - target: {fileID: 2829381899773480899, guid: 18f064cf77cfb4543b3dc8357489ef79, type: 3}
       propertyPath: m_Name
       value: Enemy Tower
@@ -340,6 +344,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c3353f7c4cc47b58a1b185ce513e2b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &503390588 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2183039572326806835, guid: 18f064cf77cfb4543b3dc8357489ef79, type: 3}
+  m_PrefabInstance: {fileID: 503390585}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a16c9e592740378abbf44b031ca35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &573423538

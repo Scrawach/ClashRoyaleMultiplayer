@@ -1,17 +1,17 @@
-﻿using Gameplay.Units;
+﻿using Gameplay.Towers;
 using UnityEngine;
 
 namespace Gameplay.Common
 {
-    public class DestroyAfterDeath : MonoBehaviour
+    public class DestroyTowerAfterDeath : MonoBehaviour
     {
-        [SerializeField] private Unit _unit;
+        [SerializeField] private Tower _tower;
         [SerializeField] private Death _death;
 
-        private UnitRegistry _units;
+        private TowerRegistry _towers;
 
-        public void Construct(UnitRegistry units) => 
-            _units = units;
+        public void Construct(TowerRegistry towers) => 
+            _towers = towers;
 
         private void OnEnable() => 
             _death.Happened += OnDeathHappened;
@@ -21,8 +21,8 @@ namespace Gameplay.Common
 
         private void OnDeathHappened()
         {
-            _units.Remove(_unit);
-            Destroy(_unit.gameObject);
+            _towers.Remove(_tower);
+            Destroy(_tower.gameObject);
         }
     }
 }

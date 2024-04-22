@@ -25,6 +25,12 @@ public class GameBootstrapper : MonoBehaviour
         var enemyUnits = new UnitRegistry(_enemyUnits);
         var playerUnits = new UnitRegistry(_playerUnits);
 
+        foreach (var enemyTower in _enemyTowers)
+            enemyTower.GetComponent<DestroyTowerAfterDeath>().Construct(enemyTowers);
+
+        foreach (var playerTower in _playerTowers)
+            playerTower.GetComponent<DestroyTowerAfterDeath>().Construct(playerTowers);
+
         foreach (var enemyUnit in _enemyUnits)
             Initialize(enemyUnit, _enemyStats, playerTowers, playerUnits, enemyUnits);
 
@@ -32,13 +38,13 @@ public class GameBootstrapper : MonoBehaviour
             Initialize(playerUnit, _playerStats, enemyTowers, enemyUnits, playerUnits);
     }
 
-    private void Initialize(Unit target, UnitStats stats, TowerRegistry targetTowers, UnitRegistry targetUnits, UnitRegistry selfUnits)
+    private static void Initialize(Unit target, UnitStats stats, TowerRegistry targetTowers, UnitRegistry targetUnits, UnitRegistry selfUnits)
     {
         target.Construct(targetTowers, targetUnits);
         target.GetComponent<UnitMovement>().SetSpeed(stats.Speed);
         target.GetComponent<UnitAttack>().Construct(stats.ModelSize, stats.AttackDamage, stats.AttackRange);
         target.GetComponent<Health>().Construct(stats.Health);
-        target.GetComponent<DestroyAfterDeath>().Construct(selfUnits);
+        target.GetComponent<DestroyUnitAfterDeath>().Construct(selfUnits);
 
         target.GetComponent<NavMeshAgent>().stoppingDistance = stats.ModelSize + stats.AttackRange.Min;
 
