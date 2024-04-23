@@ -1,6 +1,7 @@
 ﻿using System;
 using Gameplay.Common;
 using Gameplay.Towers;
+using Gameplay.Units.Attacks;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -18,7 +19,7 @@ namespace Gameplay.Units
 
         private Tower _nearestTower;
         private Unit _nearestEnemy;
-        private UnitTarget _currentTarget;
+        private AttackData _currentTarget;
 
         public void Construct(TowerRegistry enemyTowers, UnitRegistry enemyUnits)
         {
@@ -51,13 +52,13 @@ namespace Gameplay.Units
         {
             if (_nearestTower != null && _attack.InAttackRange(_nearestTower))
             {
-                _currentTarget = new UnitTarget() { Health = _nearestTower, Transform = _nearestTower.transform };
+                _currentTarget = new AttackData(this, _nearestTower, _nearestTower.transform);
                 return true;
             }
 
             if (_nearestEnemy != null && _attack.InAttackRange(_nearestEnemy))
             {
-                _currentTarget = new UnitTarget() { Health = _nearestEnemy, Transform = _nearestEnemy.transform };;
+                _currentTarget = new AttackData(this, _nearestEnemy, _nearestEnemy.transform);
                 return true;
             }
 
@@ -66,8 +67,8 @@ namespace Gameplay.Units
 
         public void AttackTarget(Action onAttackCompleted = null)
         {
-            transform.LookAt(_currentTarget.Transform);
-            _attack.Attack(_currentTarget.Health, onAttackCompleted);
+            transform.LookAt(_currentTarget.TargetTransform);
+            _attack.StartAttack(_currentTarget, onAttackCompleted);
         }
 
         public void StopAttack() => 

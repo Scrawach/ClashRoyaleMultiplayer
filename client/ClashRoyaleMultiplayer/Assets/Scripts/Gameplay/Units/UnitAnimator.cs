@@ -7,6 +7,7 @@ namespace Gameplay.Units
     {
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
         private static readonly int Attack = Animator.StringToHash("Attack");
+        private static readonly int RangeAttack = Animator.StringToHash("RangeAttack");
         private static readonly int Victory = Animator.StringToHash("Victory");
 
         [SerializeField] private Animator _animator;
@@ -28,6 +29,9 @@ namespace Gameplay.Units
 
         public void PlayAttack() => 
             _animator.SetTrigger(Attack);
+
+        public void PlayRangeAttack() =>
+            _animator.SetTrigger(RangeAttack);
 
         public void PlaySpawn()
         {
