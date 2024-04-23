@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 3734047189818449813}
   - component: {fileID: 7307482172243070504}
   - component: {fileID: 1439746499905349927}
+  - component: {fileID: 5211580755243467143}
   m_Layer: 0
   m_Name: Mage Unit
   m_TagString: Untagged
@@ -224,6 +225,21 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5211580755243467143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233243489630264078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cbd0085197d4948a68d09f76e8732db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 4992567153694685635}
+  - {fileID: 5900448771352422958}
 --- !u!1001 &3980353851130292808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -920,9 +936,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 5460627843993644450}
   _agent: {fileID: 1439746499905349927}
+--- !u!23 &4992567153694685635 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 666174405645048702, guid: c222228a9b0eb444ea10d93a7e011fe5, type: 3}
+  m_PrefabInstance: {fileID: 5510034607760679613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5475579130031523158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c222228a9b0eb444ea10d93a7e011fe5, type: 3}
+  m_PrefabInstance: {fileID: 5510034607760679613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5900448771352422958 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2131620637271574675, guid: c222228a9b0eb444ea10d93a7e011fe5, type: 3}
   m_PrefabInstance: {fileID: 5510034607760679613}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6464763148206397139 stripped

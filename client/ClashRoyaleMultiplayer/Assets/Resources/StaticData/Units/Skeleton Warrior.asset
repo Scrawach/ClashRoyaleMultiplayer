@@ -29,3 +29,8 @@ MonoBehaviour:
     AttackAnimationInfo:
       PrepareTimeInSeconds: 0.4
       WaitingTimeInSeconds: 1
+  <Skins>k__BackingField:
+  - TeamId: 0
+    SkinMaterial: {fileID: -4963801623029300775, guid: f0ce2015cd1344c42904acfa1aa9a789, type: 3}
+  - TeamId: 1
+    SkinMaterial: {fileID: -8468983757882266563, guid: a254793a6c79fe643b723ef06f1f9c46, type: 3}
