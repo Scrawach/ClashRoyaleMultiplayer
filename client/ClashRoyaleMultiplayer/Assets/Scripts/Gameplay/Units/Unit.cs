@@ -9,6 +9,7 @@ namespace Gameplay.Units
     {
         [SerializeField] private UnitMovement _movement;
         [SerializeField] private UnitAttack _attack;
+        [SerializeField] private UnitAnimator _animator;
         [SerializeField] private Health _health;
         [SerializeField] private float _aggroRadius;
 
@@ -17,7 +18,7 @@ namespace Gameplay.Units
 
         private Tower _nearestTower;
         private Unit _nearestEnemy;
-        private IDamageable _currentTarget;
+        private UnitTarget _currentTarget;
 
         public void Construct(TowerRegistry enemyTowers, UnitRegistry enemyUnits)
         {
@@ -50,21 +51,24 @@ namespace Gameplay.Units
         {
             if (_nearestTower != null && _attack.InAttackRange(_nearestTower))
             {
-                _currentTarget = _nearestTower;
+                _currentTarget = new UnitTarget() { Health = _nearestTower, Transform = _nearestTower.transform };
                 return true;
             }
 
             if (_nearestEnemy != null && _attack.InAttackRange(_nearestEnemy))
             {
-                _currentTarget = _nearestEnemy;
+                _currentTarget = new UnitTarget() { Health = _nearestEnemy, Transform = _nearestEnemy.transform };;
                 return true;
             }
 
             return false;
         }
 
-        public void AttackTarget(Action onAttackCompleted = null) => 
-            _attack.Attack(_currentTarget, onAttackCompleted);
+        public void AttackTarget(Action onAttackCompleted = null)
+        {
+            transform.LookAt(_currentTarget.Transform);
+            _attack.Attack(_currentTarget.Health, onAttackCompleted);
+        }
 
         public void StopAttack() => 
             _attack.StopAttack();
@@ -77,5 +81,8 @@ namespace Gameplay.Units
 
         public void TakeDamage(int damage) => 
             _health.TakeDamage(damage);
+
+        public void PlayVictory() => 
+            _animator.PlayVictory();
     }
 }

@@ -2,7 +2,13 @@
 {
     public class VictoryState : IState
     {
-        public void Enter() { }
+        private readonly Unit _owner;
+
+        public VictoryState(Unit owner) => 
+            _owner = owner;
+
+        public void Enter() => 
+            _owner.PlayVictory();
 
         public void Exit() { }
     }

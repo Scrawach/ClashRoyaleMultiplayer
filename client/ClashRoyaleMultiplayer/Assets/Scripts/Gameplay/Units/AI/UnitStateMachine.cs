@@ -9,7 +9,7 @@ namespace Gameplay.Units.AI
             AddState(new MoveToTowerState(this, owner));
             AddState(new ChaseState(this, owner));
             AddState(new AttackState(this, owner));
-            AddState(new VictoryState());
+            AddState(new VictoryState(owner));
         }
     }
 }

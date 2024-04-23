@@ -9,6 +9,8 @@ namespace Gameplay.Units
 {
     public class UnitAttack : MonoBehaviour
     {
+        [SerializeField] private UnitAnimator _animator;
+        
         private float _modelSize;
         private int _damage;
         private Range _attackRange;
@@ -42,8 +44,10 @@ namespace Gameplay.Units
         
         private IEnumerator Attacking(IDamageable target, Action onCompleted)
         {
-            yield return new WaitForSeconds(1);
+            _animator.PlayAttack();
+            yield return new WaitForSeconds(0.5f);
             target.TakeDamage(_damage);
+            yield return new WaitForSeconds(0.5f);
             onCompleted?.Invoke();
         }
     }
