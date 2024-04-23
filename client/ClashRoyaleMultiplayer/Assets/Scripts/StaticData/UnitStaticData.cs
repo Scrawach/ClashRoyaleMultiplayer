@@ -1,4 +1,5 @@
 ﻿using Gameplay.Units;
+using Gameplay.Units.Stats;
 using UnityEngine;
 
 namespace StaticData

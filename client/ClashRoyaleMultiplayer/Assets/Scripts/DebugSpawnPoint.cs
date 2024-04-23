@@ -1,4 +1,5 @@
-﻿using StaticData;
+﻿using Gameplay;
+using StaticData;
 using UnityEngine;
 
 public class DebugSpawnPoint : MonoBehaviour

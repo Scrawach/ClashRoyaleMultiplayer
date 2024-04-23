@@ -1,8 +1,7 @@
 ﻿using System;
-using Gameplay.Units.Stats;
 using Range = Common.Range;
 
-namespace Gameplay.Units
+namespace Gameplay.Units.Stats
 {
     [Serializable]
     public class UnitStats
