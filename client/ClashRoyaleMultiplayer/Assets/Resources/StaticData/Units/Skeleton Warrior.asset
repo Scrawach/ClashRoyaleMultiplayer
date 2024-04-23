@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa292b6d88648eaaabd3fbbbcad687f, type: 3}
+  m_Name: Skeleton Warrior
+  m_EditorClassIdentifier: 
+  <Type>k__BackingField: 0
+  <Prefab>k__BackingField: {fileID: 6739266820999685864, guid: 5b8bd5fcd0ac98f499b1e330ddc58435, type: 3}
+  <Stats>k__BackingField:
+    Health: 10
+    AttackDamage: 1
+    Speed: 5
+    ModelSize: 0.5
+    AttackRange:
+      Min: 0
+      Max: 1
+    ChaseDistance:
+      Min: 5
+      Max: 7

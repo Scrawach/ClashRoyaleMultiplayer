@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.Units
+namespace Gameplay.Units.Components
 {
     public class UnitAggro : MonoBehaviour
     {

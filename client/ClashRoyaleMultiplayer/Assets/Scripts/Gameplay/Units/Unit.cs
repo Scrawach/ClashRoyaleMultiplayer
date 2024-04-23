@@ -2,6 +2,7 @@
 using Gameplay.Common;
 using Gameplay.Towers;
 using Gameplay.Units.Attacks;
+using Gameplay.Units.Components;
 using UnityEngine;
 
 namespace Gameplay.Units

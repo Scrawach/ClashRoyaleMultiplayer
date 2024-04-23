@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace Gameplay.Units
+namespace Gameplay.Units.Components
 {
     public class UnitAnimator : MonoBehaviour
     {

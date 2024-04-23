@@ -1,55 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Gameplay.Common;
 using Gameplay.Towers;
 using Gameplay.Units;
-using Gameplay.Units.AI;
-using Gameplay.Units.Attacks;
+using StaticData;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class GameBootstrapper : MonoBehaviour
 {
     [SerializeField] private List<Tower> _enemyTowers;
-    [SerializeField] private List<Unit> _enemyUnits;
-
     [SerializeField] private List<Tower> _playerTowers;
-    [SerializeField] private List<Unit> _playerUnits;
-
-    [SerializeField] private UnitStats _playerStats;
-    [SerializeField] private UnitStats _enemyStats;
     
     private void Awake()
     {
         var enemyTowers = new TowerRegistry(_enemyTowers);
         var playerTowers = new TowerRegistry(_playerTowers);
-
-        var enemyUnits = new UnitRegistry(_enemyUnits);
-        var playerUnits = new UnitRegistry(_playerUnits);
+        var gameRegistry = new GameRegistry(new UnitRegistry(ArraySegment<Unit>.Empty),
+            new UnitRegistry(ArraySegment<Unit>.Empty), playerTowers, enemyTowers);
+        var staticData = new StaticDataService();
+        var gameFactory = new GameFactory(staticData, gameRegistry);
+        
+        staticData.Load();
+        
+        var spawnPoints = FindObjectsByType<DebugSpawnPoint>(FindObjectsSortMode.None);
 
         foreach (var enemyTower in _enemyTowers)
             enemyTower.GetComponent<DestroyTowerAfterDeath>().Construct(enemyTowers);
 
-        foreach (var playerTower in _playerTowers)
+        foreach (var playerTower in _playerTowers) 
             playerTower.GetComponent<DestroyTowerAfterDeath>().Construct(playerTowers);
-
-        foreach (var enemyUnit in _enemyUnits)
-            Initialize(enemyUnit, _enemyStats, playerTowers, playerUnits, enemyUnits);
-
-        foreach (var playerUnit in _playerUnits) 
-            Initialize(playerUnit, _playerStats, enemyTowers, enemyUnits, playerUnits);
-    }
-
-    private static void Initialize(Unit target, UnitStats stats, TowerRegistry targetTowers, UnitRegistry targetUnits, UnitRegistry selfUnits)
-    {
-        target.Construct(targetTowers, targetUnits);
-        target.GetComponent<UnitMovement>().SetSpeed(stats.Speed);
-        target.GetComponent<UnitAttack>().Construct(stats.ModelSize, stats.AttackDamage, stats.AttackRange);
-        target.GetComponent<Health>().Construct(stats.Health);
-        target.GetComponent<DestroyUnitAfterDeath>().Construct(selfUnits);
-
-        target.GetComponent<NavMeshAgent>().stoppingDistance = stats.ModelSize + stats.AttackRange.Min;
-
-        var stateMachine = new UnitStateMachine(target);
-        target.GetComponent<UnitAI>().Construct(stateMachine);
+        
+        foreach (var point in spawnPoints) 
+            gameFactory.CreateUnit(point.TypeId, point.TeamId, point.transform.position, point.transform.rotation);
     }
 }

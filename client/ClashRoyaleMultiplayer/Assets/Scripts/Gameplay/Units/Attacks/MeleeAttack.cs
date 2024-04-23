@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Gameplay.Common;
+using Gameplay.Units.Components;
 using UnityEngine;
 
 namespace Gameplay.Units.Attacks
