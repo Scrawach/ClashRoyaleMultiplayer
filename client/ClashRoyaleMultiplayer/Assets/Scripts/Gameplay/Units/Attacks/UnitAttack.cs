@@ -1,6 +1,7 @@
 ﻿using System;
 using Gameplay.Common;
 using Gameplay.Towers;
+using Gameplay.Units.Stats;
 using UnityEngine;
 using Range = Common.Range;
 
@@ -10,13 +11,18 @@ namespace Gameplay.Units.Attacks
     {
         protected float ModelSize;
         protected int Damage;
+        protected float AttackCooldown;
         protected Range AttackRange;
+        protected AttackAnimationInfo AttackAnimationInfo;
     
-        public void Construct(float modelSize, int damage, Range attackRange)
+        public void Construct(float modelSize, int damage, float attackCooldown, Range attackRange, 
+            AttackAnimationInfo attackAnimationInfo)
         {
             ModelSize = modelSize;
             Damage = damage;
+            AttackCooldown = attackCooldown;
             AttackRange = attackRange;
+            AttackAnimationInfo = attackAnimationInfo;
         }
         
         public abstract void StartAttack(AttackData data, Action onCompleted = null);

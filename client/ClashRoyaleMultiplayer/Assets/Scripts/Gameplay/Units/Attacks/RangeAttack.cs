@@ -20,7 +20,7 @@ namespace Gameplay.Units.Attacks
         private IEnumerator ShootProjectile(AttackData data, Action onCompleted = null)
         {
             _animator.PlayRangeAttack();
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(AttackAnimationInfo.PrepareTimeInSeconds);
 
             if (data.TargetTransform == null)
             {
@@ -30,7 +30,7 @@ namespace Gameplay.Units.Attacks
             
             var projectile = Instantiate(_projectile, _shootPoint.position, _shootPoint.rotation);
             projectile.Launch(data.TargetTransform, () => data.TargetHealth.TakeDamage(Damage));
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(AttackAnimationInfo.WaitingTimeInSeconds + AttackCooldown);
             onCompleted?.Invoke();
         }
     }

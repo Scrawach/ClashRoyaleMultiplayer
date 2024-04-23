@@ -17,6 +17,7 @@ MonoBehaviour:
   <Stats>k__BackingField:
     Health: 10
     AttackDamage: 2
+    AttackCooldownInSeconds: 0.2
     Speed: 4
     ModelSize: 0.5
     AttackRange:
@@ -25,3 +26,6 @@ MonoBehaviour:
     ChaseDistance:
       Min: 3
       Max: 8
+    AttackAnimationInfo:
+      PrepareTimeInSeconds: 0.5
+      WaitingTimeInSeconds: 0.5

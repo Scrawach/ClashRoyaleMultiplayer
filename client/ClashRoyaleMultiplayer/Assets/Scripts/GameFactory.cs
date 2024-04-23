@@ -28,7 +28,8 @@ public class GameFactory
         
         unit.Construct(enemyTowers, enemyUnits);
         unit.GetComponent<UnitMovement>().SetSpeed(stats.Speed);
-        unit.GetComponent<UnitAttack>().Construct(stats.ModelSize, stats.AttackDamage, stats.AttackRange);
+        unit.GetComponent<UnitAttack>().Construct(stats.ModelSize, stats.AttackDamage, stats.AttackCooldownInSeconds, 
+            stats.AttackRange, stats.AttackAnimationInfo);
         unit.GetComponent<Health>().Construct(stats.Health);
         unit.GetComponent<DestroyUnitAfterDeath>().Construct(playerUnits);
         unit.GetComponent<NavMeshAgent>().stoppingDistance = stats.ModelSize + stats.AttackRange.Min;

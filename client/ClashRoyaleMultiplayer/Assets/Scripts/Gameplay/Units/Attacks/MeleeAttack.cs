@@ -18,9 +18,9 @@ namespace Gameplay.Units.Attacks
         private IEnumerator Attacking(IDamageable target, Action onCompleted)
         {
             _animator.PlayAttack();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(AttackAnimationInfo.PrepareTimeInSeconds);
             target.TakeDamage(Damage);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(AttackAnimationInfo.WaitingTimeInSeconds + AttackCooldown);
             onCompleted?.Invoke();
         }
     }
