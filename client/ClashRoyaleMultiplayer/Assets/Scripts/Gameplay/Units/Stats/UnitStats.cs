@@ -6,6 +6,7 @@ namespace Gameplay.Units.Stats
     [Serializable]
     public class UnitStats
     {
+        public bool IsFlying;
         public int Health;
         public int AttackDamage;
         public float AttackCooldownInSeconds;
