@@ -20,10 +20,13 @@ namespace Gameplay.Units.Attacks
 
         private void Update()
         {
-            var distanceToTarget = Vector3.Distance(transform.position, _target.position);
+            var targetPosition = _target.position;
+            targetPosition.y = transform.position.y;
+            var distanceToTarget = Vector3.Distance(transform.position, targetPosition);
 
             var direction = _target.position - transform.position;
             var moveStep = _speed * Time.deltaTime;
+            direction.y = 0;
             var movement = direction.normalized * moveStep;
             transform.Translate(movement, Space.World);
 
