@@ -16,8 +16,9 @@ public class GameBootstrapper : MonoBehaviour
     {
         var enemyTowers = new TowerRegistry(_enemyTowers);
         var playerTowers = new TowerRegistry(_playerTowers);
-        var gameRegistry = new GameRegistry(new UnitRegistry(ArraySegment<Unit>.Empty),
-            new UnitRegistry(ArraySegment<Unit>.Empty), playerTowers, enemyTowers);
+        var enemyUnits = new UnitRegistry(ArraySegment<Unit>.Empty);
+        var playerUnits = new UnitRegistry(ArraySegment<Unit>.Empty);
+        var gameRegistry = new GameRegistry(playerUnits, enemyUnits, playerTowers, enemyTowers);
         var staticData = new StaticDataService();
         var gameFactory = new GameFactory(staticData, gameRegistry);
         
