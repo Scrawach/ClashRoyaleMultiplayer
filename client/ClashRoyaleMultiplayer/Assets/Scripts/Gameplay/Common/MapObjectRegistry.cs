@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Gameplay.Common
 {
-    public class MapObjectRegistry<TMapObject> where TMapObject : Behaviour
+    public class MapObjectRegistry<TMapObject> : IEnumerable<TMapObject> where TMapObject : Behaviour
     {
         private readonly List<TMapObject> _objects;
 
@@ -41,5 +42,11 @@ namespace Gameplay.Common
 
             return nearest != null;
         }
+
+        public IEnumerator<TMapObject> GetEnumerator() => 
+            _objects.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => 
+            GetEnumerator();
     }
 }
