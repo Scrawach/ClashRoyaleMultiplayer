@@ -24,15 +24,16 @@ public class GameBootstrapper : MonoBehaviour
         
         staticData.Load();
         
-        var spawnPoints = FindObjectsByType<DebugSpawnPoint>(FindObjectsSortMode.None);
-
         foreach (var enemyTower in _enemyTowers)
             enemyTower.GetComponent<DestroyTowerAfterDeath>().Construct(enemyTowers);
 
         foreach (var playerTower in _playerTowers) 
             playerTower.GetComponent<DestroyTowerAfterDeath>().Construct(playerTowers);
         
-        foreach (var point in spawnPoints) 
+        foreach (var point in SpawnPointsOnLevel()) 
             gameFactory.CreateUnit(point.TypeId, point.TeamId, point.transform.position, point.transform.rotation);
     }
+
+    private static IEnumerable<DebugSpawnPoint> SpawnPointsOnLevel() => 
+        FindObjectsByType<DebugSpawnPoint>(FindObjectsSortMode.None);
 }
