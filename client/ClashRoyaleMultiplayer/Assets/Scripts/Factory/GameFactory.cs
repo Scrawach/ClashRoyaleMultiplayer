@@ -39,12 +39,17 @@ namespace Factory
             
             if (unit.TryGetComponent(out UnitSkinSwitcher skinSwitcher))
                 skinSwitcher.SwitchSkin(data.SkinForTeam(teamId));
-
+            
+            InitializeAI(unit);
+            
             playerUnits.Add(unit);
-        
+            return unit;
+        }
+
+        private static void InitializeAI(Unit unit)
+        {
             var stateMachine = new UnitStateMachine(unit);
             unit.GetComponent<UnitAI>().Construct(stateMachine);
-            return unit;
         }
     }
 }
