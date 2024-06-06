@@ -14,7 +14,7 @@ namespace Gameplay.UI
 
         private void Update()
         {
-            Quaternion rotation = _camera.transform.rotation;
+            var rotation = _camera.transform.rotation;
             transform.LookAt(transform.position + rotation * Vector3.forward, rotation * Vector3.up);
         }
     }
