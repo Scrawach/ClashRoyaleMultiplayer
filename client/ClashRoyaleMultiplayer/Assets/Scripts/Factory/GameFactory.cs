@@ -36,6 +36,7 @@ namespace Factory
             unit.GetComponent<Health>().Construct(stats.Health);
             unit.GetComponent<DestroyUnitAfterDeath>().Construct(playerUnits);
             unit.GetComponent<NavMeshAgent>().stoppingDistance = stats.ModelSize + stats.AttackRange.Min;
+            unit.IsFlying = data.Stats.IsFlying;
             
             if (unit.TryGetComponent(out UnitSkinSwitcher skinSwitcher))
                 skinSwitcher.SwitchSkin(data.SkinForTeam(teamId));

@@ -102,6 +102,7 @@ MonoBehaviour:
   _animator: {fileID: 6182042024157223885}
   _health: {fileID: 9022499916470935529}
   _aggroRadius: 5
+  _canAttackFlyingUnit: 0
 --- !u!114 &1628478853191584492
 MonoBehaviour:
   m_ObjectHideFlags: 0

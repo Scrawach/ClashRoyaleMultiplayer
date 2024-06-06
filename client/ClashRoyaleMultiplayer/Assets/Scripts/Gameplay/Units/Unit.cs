@@ -14,6 +14,7 @@ namespace Gameplay.Units
         [SerializeField] private UnitAnimator _animator;
         [SerializeField] private Health _health;
         [SerializeField] private float _aggroRadius;
+        [SerializeField] private bool _canAttackFlyingUnit;
 
         private TowerRegistry _enemyTowers;
         private UnitRegistry _enemyUnits;
@@ -21,6 +22,8 @@ namespace Gameplay.Units
         private Tower _nearestTower;
         private Unit _nearestEnemy;
         private AttackData _currentTarget;
+        
+        public bool IsFlying { get; set; }
 
         public void Construct(TowerRegistry enemyTowers, UnitRegistry enemyUnits)
         {
@@ -39,7 +42,7 @@ namespace Gameplay.Units
 
         public bool HasChaseTarget()
         {
-            var hasEnemy = _enemyUnits.TryGetNearest(transform.position, out _nearestEnemy, out var distance);
+            var hasEnemy = _enemyUnits.TryGetNearest(transform.position, out _nearestEnemy, out var distance, _canAttackFlyingUnit);
             return hasEnemy && distance < _aggroRadius;
         }
 
