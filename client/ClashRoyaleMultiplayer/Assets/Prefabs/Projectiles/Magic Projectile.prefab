@@ -151,4 +151,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 25
-  _triggerZone: 0.1
+  _triggerZone: 0.5

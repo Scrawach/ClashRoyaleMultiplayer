@@ -20,6 +20,12 @@ namespace Gameplay.Units.Attacks
 
         private void Update()
         {
+            if (_target == null)
+            {
+                _onCompleted?.Invoke();
+                Destroy(gameObject);
+            }
+            
             var targetPosition = _target.position;
             targetPosition.y = transform.position.y;
             var distanceToTarget = Vector3.Distance(transform.position, targetPosition);
