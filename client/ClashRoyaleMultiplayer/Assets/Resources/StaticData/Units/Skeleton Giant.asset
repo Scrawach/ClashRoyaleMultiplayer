@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9aa292b6d88648eaaabd3fbbbcad687f, type: 3}
-  m_Name: Skeleton Mage
+  m_Name: Skeleton Giant
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 1
-  <Prefab>k__BackingField: {fileID: 5233243489630264078, guid: b7b1c266c02dc1748ab2ec147f15cb24, type: 3}
+  <Type>k__BackingField: 2
+  <Prefab>k__BackingField: {fileID: 1518085916127214377, guid: 36dec50c335405e18b73095143b7679f, type: 3}
   <Stats>k__BackingField:
     IsFlying: 0
-    Health: 10
+    Health: 20
     AttackDamage: 2
     AttackCooldownInSeconds: 0.2
-    Speed: 4
-    ModelSize: 0.5
+    Speed: 3
+    ModelSize: 1
     AttackRange:
       Min: 0
-      Max: 8
+      Max: 1.5
     ChaseDistance:
-      Min: 3
-      Max: 8
+      Min: 5
+      Max: 7
     AttackAnimationInfo:
-      PrepareTimeInSeconds: 0.5
-      WaitingTimeInSeconds: 0.5
+      PrepareTimeInSeconds: 0.4
+      WaitingTimeInSeconds: 1
   <Skins>k__BackingField:
   - TeamId: 0
     SkinMaterial: {fileID: 2100000, guid: c822426ff4418a14caf412878fb6bd7c, type: 2}

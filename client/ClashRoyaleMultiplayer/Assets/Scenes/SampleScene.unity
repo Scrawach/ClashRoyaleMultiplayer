@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20574151aada4017b5397430093762db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypeId: 1
+  TypeId: 2
   TeamId: 0
 --- !u!4 &996422859
 Transform:

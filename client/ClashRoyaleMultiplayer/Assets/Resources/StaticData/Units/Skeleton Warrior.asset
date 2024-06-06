@@ -15,6 +15,7 @@ MonoBehaviour:
   <Type>k__BackingField: 0
   <Prefab>k__BackingField: {fileID: 6739266820999685864, guid: 5b8bd5fcd0ac98f499b1e330ddc58435, type: 3}
   <Stats>k__BackingField:
+    IsFlying: 0
     Health: 10
     AttackDamage: 1
     AttackCooldownInSeconds: 0.2
@@ -31,6 +32,6 @@ MonoBehaviour:
       WaitingTimeInSeconds: 1
   <Skins>k__BackingField:
   - TeamId: 0
-    SkinMaterial: {fileID: -4963801623029300775, guid: f0ce2015cd1344c42904acfa1aa9a789, type: 3}
+    SkinMaterial: {fileID: 2100000, guid: c822426ff4418a14caf412878fb6bd7c, type: 2}
   - TeamId: 1
-    SkinMaterial: {fileID: -8468983757882266563, guid: a254793a6c79fe643b723ef06f1f9c46, type: 3}
+    SkinMaterial: {fileID: 2100000, guid: 2b8567c0e1e1261f0b9c2f37fde2989e, type: 2}

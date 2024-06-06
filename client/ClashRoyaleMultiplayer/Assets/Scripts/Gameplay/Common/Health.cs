@@ -8,8 +8,11 @@ namespace Gameplay.Common
         [SerializeField] private int _current;
         [SerializeField] private int _total;
 
-        public void Construct(int total) => 
+        public void Construct(int total)
+        {
             _total = total;
+            _current = total;
+        }
 
         public float Ratio => 
             (float)_current / _total;

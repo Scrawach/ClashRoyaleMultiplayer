@@ -4,5 +4,6 @@
     {
         Warrior = 0,
         Mage = 1,
+        Giant = 2,
     }
 }
