@@ -6,7 +6,7 @@
     R::setup( 'mysql:host=localhost;dbname=testbd', 'root', '' );
 
     if(R::testConnection() == false){
-        echo 'Подключение к БД не удалось';
+        echo 'Database connection failed!';
         exit;
     }
 ?>
